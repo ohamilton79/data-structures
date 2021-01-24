@@ -1,9 +1,16 @@
 class MaxHeap:
 
-    def __init__(self, arr):
+    def __init__(self, arr, maxSize):
         #Define the size of the heap
         self.heapSize = len(arr)
-        self.__heapArray = arr
+        self.maxSize = maxSize
+        #Initialise array with defined size and empty entries
+        self.__heapArray = [None]*maxSize
+        
+        #Add elements passed to heap array
+        for index, element in enumerate(arr):
+            self.__heapArray[index] = element
+            
         #Create the max heap
         self.buildMaxHeap()
 
@@ -29,7 +36,7 @@ class MaxHeap:
         maxNode = i
 
         #If the left child is greater than the root of the subtree
-        if leftNode < self.heapSize and self.get(leftNode) > self.get(i):
+        if leftNode < self.heapSize and self.get(leftNode) > self.get(maxNode):
             maxNode = leftNode
 
         #If the right child is greater than the root node of the subtree
@@ -48,12 +55,12 @@ class MaxHeap:
 
     #Output the array representation of the heap
     def output(self):
-        print(self.__heapArray)
+        print([self.__heapArray[i] for i in range(self.heapSize)])
 
 
 #Create a new max heap
-testArr = [1, 2, 5, 8, 10, 12, 15]
-maxHeap = MaxHeap(testArr)
-maxHeap.output()
+#testArr = [1, 2, 5, 8, 10, 12, 15]
+#maxHeap = MaxHeap(testArr)
+#maxHeap.output()
 
         
